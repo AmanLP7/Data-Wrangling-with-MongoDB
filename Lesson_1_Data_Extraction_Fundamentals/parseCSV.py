@@ -22,6 +22,10 @@ def parse_file(datafile):
     return data
 
 
+
+parse_file(DATAFILE)
+
+'''
 def test():
     # a simple test of your implemetation
     datafile = os.path.join(DATADIR, DATAFILE)
@@ -34,3 +38,4 @@ def test():
 
     
 test()
+'''
