@@ -1,0 +1,1 @@
+This repository contains exercises and project for Udacity's Mooc "Data Wrangling with MongoDB". Here I've used Python as programming language. MongoDB has been used for managing and storing data.
