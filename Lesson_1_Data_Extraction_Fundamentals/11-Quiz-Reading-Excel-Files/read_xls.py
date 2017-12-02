@@ -49,10 +49,10 @@ def parse_file(datafile):
     # print xlrd.xldate_as_tuple(exceltime, 0)
 
 
-    data = [[sheet.cell_value(r,col)]]
+    data = [[sheet.cell_value(r,col)
+                for col in range(sheet.ncols)]
+                    for r in range(sheet.nrows)]
     
-
-
     
     data = {
             'maxtime': (0, 0, 0, 0, 0, 0),
@@ -61,6 +61,38 @@ def parse_file(datafile):
             'minvalue': 0,
             'avgcoast': 0
     }
+
+    coast = sheet.col_values(1,start_rowx = 1,
+                            end_rowx = sheet.nrows)
+
+    dates = sheet.col_values(0,start_rowx = 1,
+                            end_rowx = sheet.nrows)
+
+
+    data['maxvalue'] = max(coast)
+    data['minvalue'] = min(coast)
+
+    # index of max value
+    indexMax = max(range(len(coast)), key = coast.__getitem__)
+
+    # index of min value
+    indexMin = min(range(len(coast)), key = coast.__getitem__)
+
+
+    data['maxtime'] = xlrd.xldate_as_tuple(dates[indexMax],0)
+    data['mintime'] = xlrd.xldate_as_tuple(dates[indexMin],0)
+
+    data['avgcoast'] = sum(coast) / len(coast)
+
+
+
+    #print(indexMax)
+
+    #print(data)
+
+
+
+
     return data
 
 
