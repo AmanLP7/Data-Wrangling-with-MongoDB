@@ -11,14 +11,15 @@ Please see the test function for the expected return format
 """
 
 import xlrd
-from zipfile import ZipFile
+#from zipfile import ZipFile
 datafile = "2013_ERCOT_Hourly_Load_Data.xls"
 
 
+'''
 def open_zip(datafile):
     with ZipFile('{0}.zip'.format(datafile), 'r') as myzip:
         myzip.extractall()
-
+'''
 
 def parse_file(datafile):
     workbook = xlrd.open_workbook(datafile)
@@ -46,7 +47,12 @@ def parse_file(datafile):
     # print exceltime
     # print "Convert time to a Python datetime tuple, from the Excel float:",
     # print xlrd.xldate_as_tuple(exceltime, 0)
+
+
+    data = [[sheet.cell_value(r,col)]]
     
+
+
     
     data = {
             'maxtime': (0, 0, 0, 0, 0, 0),
@@ -59,7 +65,7 @@ def parse_file(datafile):
 
 
 def test():
-    open_zip(datafile)
+    #open_zip(datafile)
     data = parse_file(datafile)
 
     assert data['maxtime'] == (2013, 8, 13, 17, 0, 0)
