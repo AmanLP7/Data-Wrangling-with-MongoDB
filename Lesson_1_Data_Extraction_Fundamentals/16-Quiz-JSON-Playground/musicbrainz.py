@@ -67,26 +67,45 @@ def main():
     """
 
     # Query for information in the database about bands named Nirvana
-    results = query_by_name(ARTIST_URL, query_type["simple"], "Nirvana")
+    results = query_by_name(ARTIST_URL, query_type["simple"], "FIRST AID KIT")
     pretty_print(results)
 
+
+    '''
     # Isolate information from the 4th band returned (index 3)
     print("\nARTIST:")
     pretty_print(results["artists"][3])
+    '''
 
     # Query for releases from that band using the artist_id
     artist_id = results["artists"][3]["id"]
     artist_data = query_site(ARTIST_URL, query_type["releases"], artist_id)
     releases = artist_data["releases"]
+    
 
+    '''
     # Print information about releases from the selected band
     print("\nONE RELEASE:")
     pretty_print(releases[0], indent=2)
+    '''
+
 
     release_titles = [r["title"] for r in releases]
+    '''
     print("\nALL TITLES:")
     for t in release_titles:
         print(t)
+    '''
+
+
+    # How many bands named "FIRST AID KIT"
+    count = 0
+    print("\nNumber of bands:")
+    for band in results["artists"]:
+        if band['name'] == "First Aid Kit":
+            count += 1
+        #print(band['name'])
+    print(count)
 
 if __name__ == '__main__':
     main()
