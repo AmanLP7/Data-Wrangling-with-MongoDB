@@ -26,7 +26,7 @@ def query_site(url, params, uid="", fmt="json"):
     """
     params["fmt"] = fmt
     r = requests.get(url + uid, params=params)
-    print "requesting", r.url
+    print("requesting", r.url)
 
     if r.status_code == requests.codes.ok:
         return r.json()
@@ -49,9 +49,9 @@ def pretty_print(data, indent=4):
     readable.
     """
     if type(data) == dict:
-        print json.dumps(data, indent=indent, sort_keys=True)
+        print(json.dumps(data, indent=indent, sort_keys=True))
     else:
-        print data
+        print(data)
 
 
 def main():
@@ -71,7 +71,7 @@ def main():
     pretty_print(results)
 
     # Isolate information from the 4th band returned (index 3)
-    print "\nARTIST:"
+    print("\nARTIST:")
     pretty_print(results["artists"][3])
 
     # Query for releases from that band using the artist_id
@@ -80,13 +80,13 @@ def main():
     releases = artist_data["releases"]
 
     # Print information about releases from the selected band
-    print "\nONE RELEASE:"
+    print("\nONE RELEASE:")
     pretty_print(releases[0], indent=2)
 
     release_titles = [r["title"] for r in releases]
-    print "\nALL TITLES:"
+    print("\nALL TITLES:")
     for t in release_titles:
-        print t
+        print(t)
 
 if __name__ == '__main__':
     main()
