@@ -67,8 +67,8 @@ def main():
     """
 
     # Query for information in the database about bands named Nirvana
-    results = query_by_name(ARTIST_URL, query_type["simple"], "FIRST AID KIT")
-    pretty_print(results)
+    results = query_by_name(ARTIST_URL, query_type["simple"], "Beatles")
+    #pretty_print(results)
 
 
     '''
@@ -97,7 +97,7 @@ def main():
         print(t)
     '''
 
-
+    '''
     # How many bands named "FIRST AID KIT"
     count = 0
     print("\nNumber of bands:")
@@ -106,6 +106,25 @@ def main():
             count += 1
         #print(band['name'])
     print(count)
+    '''
+   
+    '''
+    # Begin-Area name for Queen
+    for band in results["artists"]:
+        if 'begin-area' in band.keys():
+            print(band['begin-area']['name'])
+            break
+        else:
+            continue
+    '''
+
+    # Spanish alias for Beatles
+    for band in results['artists']:
+        if 'aliases' in band.keys():
+            for names in band['aliases']:
+                if names['locale'] == 'es':
+                    print(names['name'])
+
 
 if __name__ == '__main__':
     main()
