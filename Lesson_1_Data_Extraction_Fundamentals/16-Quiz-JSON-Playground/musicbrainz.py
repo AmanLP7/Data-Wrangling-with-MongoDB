@@ -67,7 +67,7 @@ def main():
     """
 
     # Query for information in the database about bands named Nirvana
-    results = query_by_name(ARTIST_URL, query_type["simple"], "Beatles")
+    results = query_by_name(ARTIST_URL, query_type["simple"], "Nirvana")
     #pretty_print(results)
 
 
@@ -117,13 +117,31 @@ def main():
         else:
             continue
     '''
-
+    
+    '''
     # Spanish alias for Beatles
     for band in results['artists']:
         if 'aliases' in band.keys():
             for names in band['aliases']:
                 if names['locale'] == 'es':
                     print(names['name'])
+    '''
+
+    
+    # Nirvana disambiguation
+    for band in results['artists']:
+        if 'area' in band.keys():
+            if band['area']['name'] == "United States":
+                print(band)
+    
+
+    '''
+    # When was One Direction formed
+    for band in results['artists']:
+        if band['name'] == "One Direction":
+            print(band['life-span']['begin'])
+            break
+    '''
 
 
 if __name__ == '__main__':
