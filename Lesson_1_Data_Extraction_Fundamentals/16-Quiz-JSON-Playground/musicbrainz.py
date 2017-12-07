@@ -132,7 +132,11 @@ def main():
     for band in results['artists']:
         if 'area' in band.keys():
             if band['area']['name'] == "United States":
-                print(band)
+                if 'tags' in band.keys():
+                    for tag in band['tags']:
+                        if tag['name'] == 'kurt cobain':
+                            print(band['disambiguation'])
+                            break
     
 
     '''
