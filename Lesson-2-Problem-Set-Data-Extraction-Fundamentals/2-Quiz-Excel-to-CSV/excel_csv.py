@@ -29,7 +29,7 @@ def parse_file(datafile):
     # Remember that you can use xlrd.xldate_as_tuple(sometime, 0) to convert
     # Excel date to Python tuple of (year, month, day, hour, minute, second)
     data.append(['Station','Year', 'Month', 'Day', 'Hour', 'Max Load'])
-    stations = sheet.row_values(0, start_colx = 1)
+    stations = sheet.row_values(0, start_colx = 1, end_colx = 9)
 
     for i in range(len(stations)):
 
@@ -40,7 +40,7 @@ def parse_file(datafile):
         year, month, day, *hour = xlrd.xldate_as_tuple(dates[ind],0)
         data.append([stations[i],year,month,day,hour[0],maximum_val]) 
 
-    #print(data)
+    #print(len(data))
 
     
     return data
@@ -50,8 +50,14 @@ def parse_file(datafile):
 def save_file(data, filename):
     
     with open(filename, 'w') as of:
-        
-    return
+        writer = csv.writer(of,delimiter = "|")
+
+        for entry in data:
+            #print(entry)
+            writer.writerow(entry)
+
+
+    return (filename)
     
     
     
