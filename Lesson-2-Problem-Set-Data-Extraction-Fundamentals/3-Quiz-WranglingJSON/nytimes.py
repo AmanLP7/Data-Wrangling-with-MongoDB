@@ -45,7 +45,14 @@ def article_overview(kind, period):
     titles = []
     urls =[]
     # YOUR CODE HERE
-    pprint.pprint(data)
+    for entry in data:
+        titles.append({entry["section"]:entry["title"]})
+        for item in entry["media"]:
+            for list in item['media-metadata']:
+                if list["format"] == "Standard Thumbnail":
+                    urls.append(list['url'])
+
+    #print(titles)
                         
                         
     return (titles, urls)
