@@ -5,6 +5,7 @@
 # The tags for first name, surname and email should map directly
 # to the dictionary keys
 import xml.etree.ElementTree as ET
+import pprint
 
 article_file = "exampleResearchArticle.xml"
 
@@ -24,12 +25,17 @@ def get_authors(root):
         }
 
         # YOUR CODE HERE
-        data["fnm"] = (author.find("fnm")).text
-        data["snm"] = (author.find("snm")).text
-        data["email"] = (author.find("email")).text
-        
+        data['fnm'] = author.find('fnm').text
+        data['snm'] = author.find('snm').text
+        data['email'] = author.find('email').text
+
         authors.append(data)
 
+    #pprint.pprint(authors)
+
+
+
+        
     return authors
 
 
