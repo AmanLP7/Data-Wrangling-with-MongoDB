@@ -6,6 +6,7 @@
 # to the dictionary keys, but you have to extract the attributes from the "insr" tag
 # and add them to the list for the dictionary key "insr"
 import xml.etree.ElementTree as ET
+import pprint
 
 article_file = "exampleResearchArticle.xml"
 
@@ -27,6 +28,20 @@ def get_authors(root):
         }
 
          # YOUR CODE HERE
+         for id in author.findall('insr'):
+            data["insr"].append(id.attrib['iid'])
+
+         data['fnm'] = author.find('fnm').text
+         data['snm'] = author.find('snm').text
+         data['email'] = author.find('email').text
+
+
+         authors.append(data)
+
+
+
+
+    #pprint.pprint(authors)
          
     return authors
 
