@@ -25,15 +25,19 @@ def extract_carriers(page):
     with open(page, "r") as html:
         # do something here to find the necessary values
         soup = BeautifulSoup(html, "lxml")
-        carriers = soup.find(id = "CarrierList")
-        counter = 0
-        for option in carriers.find_all("option"):
-            counter += 1
-            if counter <= 3:
-                continue
-            data.append(option["value"])
 
-    return data
+        count = 0
+
+        carriers = soup.find(id = 'CarrierList')
+        #print(carriers,"---")
+
+        for code in carriers.find_all('option'):
+          if code['value'].startswith("All"):
+            continue
+          else:
+            data.append(code['value'])
+
+    return(data)
 
 
 def make_request(data):
