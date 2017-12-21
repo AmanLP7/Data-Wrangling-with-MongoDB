@@ -21,11 +21,13 @@ def extract_airports(page):
         soup = BeautifulSoup(html, "lxml")
         airports = soup.find(id = "AirportList")
 
-        for codes in airports.find_all('options'):
+        for codes in airports.find_all('option'):
             if codes['value'].startswith("All"):
                 continue
             else:
                 data.append(codes['value'])
+
+    #print(data)
         
 
     return data
