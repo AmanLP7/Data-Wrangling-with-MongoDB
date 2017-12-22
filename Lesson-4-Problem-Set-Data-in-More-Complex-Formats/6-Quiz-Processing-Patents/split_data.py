@@ -41,6 +41,7 @@ def split_file(filename):
         writer.close()
 
 
+    
 def test():
     split_file(PATENTS)
     for n in range(4):
@@ -48,10 +49,10 @@ def test():
             fname = "{}-{}".format(PATENTS, n)
             f = open(fname, "r")
             if not f.readline().startswith("<?xml"):
-                print "You have not split the file {} in the correct boundary!".format(fname)
+                print("You have not split the file {} in the correct boundary!".format(fname))
             f.close()
         except:
-            print "Could not find file {}. Check if the filename is correct!".format(fname)
+            print("Could not find file {}. Check if the filename is correct!".format(fname))
 
 
 test()
