@@ -40,10 +40,26 @@ FIELDS = ["name", "timeZone_label", "utcOffset", "homepage", "governmentType_lab
           "maximumElevation", "minimumElevation", "populationDensity",
           "wgs84_pos#lat", "wgs84_pos#long", "areaLand", "areaMetro", "areaUrban"]
 
+
+## Function to cast value to int
+## Returns TRUE if possible else FALSE
+def is_int(val):
+  try:
+    int(val)
+    return True
+  except:
+    return FALSE
+
+
+## Functions to cast value to float
+## Returns TRUE
+
+
 def audit_file(filename, fields):
     fieldtypes = {}
 
     # YOUR CODE HERE
+
 
 
     return fieldtypes
