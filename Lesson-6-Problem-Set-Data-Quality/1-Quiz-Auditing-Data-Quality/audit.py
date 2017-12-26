@@ -48,18 +48,46 @@ def is_int(val):
     int(val)
     return True
   except:
-    return FALSE
+    return False
 
 
 ## Functions to cast value to float
-## Returns TRUE
+## Returns TRUE if possible else FALSE
+def is_float(val):
+  try:
+    float(val)
+    return True
+  except:
+    return False
 
 
 def audit_file(filename, fields):
     fieldtypes = {}
 
     # YOUR CODE HERE
+    for field in fields:
+      fieldtypes[field] = set()
 
+
+    with open(filename, "r") as f:
+      reader = csv.DictReader(f)
+
+      for row in reader:
+        if row['URI'].find('dbpedia') > -1:
+
+          for field in fields:
+            if row[field] == "NULL" or row[field] == "":
+              fieldtypes[field].add(type(None))
+            elif row[field].startswith("{"):
+              fieldtypes[field].add(type([]))
+            elif is_int(row[field]):
+              fieldtypes[field].add(type(1))
+            elif is_float(row[field]):
+              fieldtypes[field].add(type(1.1))
+            else:
+              fieldtypes[field].add(type(""))
+
+    #pprint.pprint(fieldtypes)
 
 
     return fieldtypes
