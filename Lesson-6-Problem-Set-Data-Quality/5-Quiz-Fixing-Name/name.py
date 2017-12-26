@@ -24,8 +24,15 @@ CITIES = 'cities.csv'
 def fix_name(name):
 
     # YOUR CODE HERE
+    if name.startswith("{"):
+        name = name.replace("{","").replace("}","").split("|")
+        return name
+    elif name == "NULL":
+        return ([])
+    else:
+        name = [name]
+        return name
 
-    return name
 
 
 def process_file(filename):
@@ -34,20 +41,32 @@ def process_file(filename):
         reader = csv.DictReader(f)
         #skipping the extra metadata
         for i in range(3):
+<<<<<<< HEAD
             l = reader.next()
+=======
+            l = next(reader)
+>>>>>>> edit
         # processing file
         for line in reader:
             # calling your function to fix the area value
             if "name" in line:
                 line["name"] = fix_name(line["name"])
             data.append(line)
+<<<<<<< HEAD
+=======
+            #print(line["name"])
+>>>>>>> edit
     return data
 
 
 def test():
     data = process_file(CITIES)
 
+<<<<<<< HEAD
     print "Printing 20 results:"
+=======
+    print("Printing 20 results:")
+>>>>>>> edit
     for n in range(20):
         pprint.pprint(data[n]["name"])
 
