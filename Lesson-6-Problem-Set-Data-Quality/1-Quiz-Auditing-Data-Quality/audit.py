@@ -87,6 +87,8 @@ def audit_file(filename, fields):
             else:
               fieldtypes[field].add(type(""))
 
+            
+
     #pprint.pprint(fieldtypes)
 
 

@@ -17,13 +17,30 @@ import codecs
 import csv
 import json
 import pprint
+import re
 
 CITIES = 'cities.csv'
+
+
+## Function to check whether string can be converted to float
+## If possible returns TRUE else FALSE
+def is_float(val):
+    try:
+        float(val)
+        return True
+    except:
+        return False
+
 
 
 def fix_area(area):
 
     # YOUR CODE HERE
+    if is_float(area):
+        return float(area)
+    elif area[0] == "{":
+        area = area.replace("{","").replace("}","").split("|")
+        return (float(max(area, key = lambda x: len(x.split('e')[0]))))
 
     return area
 
@@ -38,7 +55,7 @@ def process_file(filename):
 
         #skipping the extra metadata
         for i in range(3):
-            l = reader.next()
+            l = next(reader)
 
         # processing file
         for line in reader:
@@ -46,6 +63,7 @@ def process_file(filename):
             if "areaLand" in line:
                 line["areaLand"] = fix_area(line["areaLand"])
             data.append(line)
+            pprint.pprint(line["areaLand"])
 
     return data
 
@@ -53,7 +71,7 @@ def process_file(filename):
 def test():
     data = process_file(CITIES)
 
-    print "Printing three example results:"
+    print("Printing three example results:")
     for n in range(5,8):
         pprint.pprint(data[n]["areaLand"])
 
