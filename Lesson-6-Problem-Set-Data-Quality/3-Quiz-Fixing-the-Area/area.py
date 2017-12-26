@@ -17,7 +17,6 @@ import codecs
 import csv
 import json
 import pprint
-import re
 
 CITIES = 'cities.csv'
 
@@ -64,7 +63,7 @@ def process_file(filename):
             if "areaLand" in line:
                 line["areaLand"] = fix_area(line["areaLand"])
             data.append(line)
-            pprint.pprint(line["areaLand"])
+            #pprint.pprint(line["areaLand"])
 
     return data
 
