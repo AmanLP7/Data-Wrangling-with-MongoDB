@@ -41,8 +41,9 @@ def fix_area(area):
     elif area[0] == "{":
         area = area.replace("{","").replace("}","").split("|")
         return (float(max(area, key = lambda x: len(x.split('e')[0]))))
+    else:
+        return (None)
 
-    return area
 
 
 
