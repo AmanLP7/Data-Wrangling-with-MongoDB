@@ -29,8 +29,13 @@ CITIES = 'cities.csv'
 
 def check_loc(point, lat, longi):
     # YOUR CODE HERE
+    point = point.split(" ")
+
+    if float(point[0]) == float(lat) and float(point[1]) == float(longi):
+        return True
+    else:
+        return False
     
-    pass
 
 
 def process_file(filename):
@@ -39,17 +44,20 @@ def process_file(filename):
         reader = csv.DictReader(f)
         #skipping the extra matadata
         for i in range(3):
-            l = reader.next()
+            l = next(reader)
         # processing file
         for line in reader:
             # calling your function to check the location
             result = check_loc(line["point"], line["wgs84_pos#lat"], line["wgs84_pos#long"])
             if not result:
-                print "{}: {} != {} {}".format(line["name"], line["point"], line["wgs84_pos#lat"], line["wgs84_pos#long"])
+                print("{}: {} != {} {}".format(line["name"], line["point"], line["wgs84_pos#lat"], line["wgs84_pos#long"]))
             data.append(line)
+            #print(line["point"], line["wgs84_pos#lat"], line["wgs84_pos#long"])
 
     return data
 
+
+#process_file(CITIES)
 
 def test():
     assert check_loc("33.08 75.28", "33.08", "75.28") == True
