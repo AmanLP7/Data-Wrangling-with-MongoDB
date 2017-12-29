@@ -14,7 +14,7 @@ https://www.udacity.com/wiki/ud032
 
 def porsche_query():
     # Please fill in the query to find all autos manuafactured by Porsche.
-    query = {}
+    query = {"manufacturer" : "Porsche"}
     return query
 
 
@@ -38,7 +38,7 @@ if __name__ == "__main__":
     query = porsche_query()
     results = find_porsche(db, query)
 
-    print "Printing first 3 results\n"
+    print("Printing first 3 results\n")
     import pprint
     for car in results[:3]:
         pprint.pprint(car)
