@@ -147,7 +147,7 @@ def process_file(input_file):
         model_years = {}
         production_years = {}
         dimensions = {}
-        for field, val in row.iteritems():
+        for field, val in row.items():
             if field not in fields or empty_val(val):
                 continue
             if field in ["bodyStyle_label", "class_label", "layout_label"]:
