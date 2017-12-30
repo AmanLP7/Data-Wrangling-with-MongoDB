@@ -11,4 +11,4 @@
 	"productionYears" : [ ],
 	"manufacturer" : "Marion Power Shovel Company",
 	"name" : "Crawler-transporter"
-}
+}	

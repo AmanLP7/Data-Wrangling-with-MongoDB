@@ -15,7 +15,7 @@ def dot_query():
     # Edit the line below with your query - try to use dot notation.
     # You can check out example_auto.txt for an example of the document
     # structure in the collection.
-    query = {}
+    query = {"dimensions.width" : {"$gt" : 2.5}}
     return query
 
 
@@ -33,7 +33,7 @@ if __name__ == "__main__":
     query = dot_query()
     cars = db.cars.find(query)
 
-    print "Printing first 3 results\n"
+    print("Printing first 3 results\n")
     import pprint
     for car in cars[:3]:
         pprint.pprint(car)
