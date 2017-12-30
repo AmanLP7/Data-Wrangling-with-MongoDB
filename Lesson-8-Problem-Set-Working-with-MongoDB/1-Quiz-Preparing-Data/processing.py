@@ -71,11 +71,21 @@ def process_file(filename, fields):
     with open(filename, "r") as f:
         reader = csv.DictReader(f)
         for i in range(3):
-            l = reader.next()
+            l = next(reader)
 
         for line in reader:
-            # YOUR CODE HERE
-            pass
+          # YOUR CODE HERE
+
+          # Iterating, only those fields, mentioned in
+          # FIELDS array
+          for field in FIELDS:
+            
+
+            
+
+            
+
+
     return data
 
 
@@ -91,7 +101,7 @@ def parse_array(v):
 
 def test():
     data = process_file(DATAFILE, FIELDS)
-    print "Your first entry:"
+    print("Your first entry:")
     pprint.pprint(data[0])
     first_entry = {
         "synonym": None, 
