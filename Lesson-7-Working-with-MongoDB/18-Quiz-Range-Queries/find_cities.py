@@ -15,7 +15,7 @@ from datetime import datetime
 def range_query():
     # Modify the below line with your query.
     # You can use datetime(year, month, day) to specify date in the query
-    query = {}
+    query = {'foundingDate' : {"$gte" : datetime(2001,1,1)}}
     return query
 
 # Do not edit code below this line in the online code editor.
@@ -32,6 +32,6 @@ if __name__ == "__main__":
     query = range_query()
     cities = db.cities.find(query)
 
-    print "Found cities:", cities.count()
+    print("Found cities:", cities.count())
     import pprint
     pprint.pprint(cities[0])
