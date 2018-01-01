@@ -104,14 +104,7 @@ def process_file(filename, fields):
 
           data.append(item)
 
-
-
     #pprint.pprint(line['genus_label'])
-
-            
-
-            
-
 
     return data
 
