@@ -89,12 +89,24 @@ def process_file(filename, fields):
 
           line["synonym"] = parse_array(line["synonym"])
 
-          for syn in line["synonym"]:
-            syn = re.sub(r"[*]","",syn)
+          item = {}
+          item["classification"] = {}
 
-          print(line["synonym"])
-
+          for key in fields:
             
+            if line[key] == "NULL":
+              line[key] = None
+
+            if re.search(r"_label", key):
+              item['classification'][fields[key]] = line[key]
+            else:
+              item[fields[key]] = line[key]
+
+          data.append(item)
+
+
+
+    #pprint.pprint(line['genus_label'])
 
             
 
@@ -109,8 +121,11 @@ def parse_array(v):
         v = v.lstrip("{")
         v = v.rstrip("}")
         v_array = v.split("|")
-        v_array = [i.strip() for i in v_array]
+        v_array = [re.sub(r"[*]","",i).strip() for i in v_array]
         return v_array
+    elif v == "NULL":
+      return None
+
     return [v]
 
 
