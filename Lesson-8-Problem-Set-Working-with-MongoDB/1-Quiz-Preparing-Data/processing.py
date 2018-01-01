@@ -75,10 +75,25 @@ def process_file(filename, fields):
 
         for line in reader:
           # YOUR CODE HERE
+          
+          # 1.Trimming out redundant description from "rdf-schema#label" field
 
-          # Iterating, only those fields, mentioned in
-          # FIELDS array
-          for field in FIELDS:
+          line['rdf-schema#label'] = re.sub(r"\(.+\)","",line['rdf-schema#label']).strip()
+          
+          # 2.Setting values for "name" field
+
+          if line['name'] == "NULL" or re.search(r"\W+",line['name']):
+            line['name'] = line['rdf-schema#label']
+
+          # 3.Setting value for "synonym" field
+
+          line["synonym"] = parse_array(line["synonym"])
+
+          for syn in line["synonym"]:
+            syn = re.sub(r"[*]","",syn)
+
+          print(line["synonym"])
+
             
 
             
