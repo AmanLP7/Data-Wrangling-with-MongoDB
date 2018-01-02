@@ -7,8 +7,11 @@ import json
 def insert_data(data, db):
 
     # Your code here. Insert the data into a collection 'arachnid'
+    arachnid = db.arachnid
+    #results = arachnid.insert_many(data)
+    #print(results.inserted_ids)
 
-    pass
+    return
 
 
 if __name__ == "__main__":
@@ -20,4 +23,4 @@ if __name__ == "__main__":
     with open('arachnid.json') as f:
         data = json.loads(f.read())
         insert_data(data, db)
-        print db.arachnid.find_one()
+        print(db.arachnid.find_one())
