@@ -20,7 +20,7 @@ if __name__ == "__main__":
 	client = MongoClient("mongodb://localhost:27017")
 	db = client.examples
 
-	with open('twitter.json') as f:
+	with open('twitter_org.json') as f:
 		data = json.loads(f.read())
 		insert_data(data,db)
 		print(db.twitter.count())
