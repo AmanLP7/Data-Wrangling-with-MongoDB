@@ -39,7 +39,24 @@ def get_db(db_name):
 
 def make_pipeline():
     # complete the aggregation pipeline
-    pipeline = [ ]
+    pipeline = []
+
+    # Matching users with timezone = "Brasilia" and tweets >= 100
+    pipeline.append({"$match" : {"user.time_zone" : "Brasilia",
+                                 "user.statuses_count" : {"$gte" : 100}}})
+
+    # Projecting followers, number of tweets and screen name
+    pipeline.append({"$project" : {"followers" : "$user.followers_count",
+                                   "screen_name" : "$user.screen_name",
+                                   "tweets" : "$user.statuses_count"}})
+
+    # Sorting the result in Descending order
+    pipeline.append({"$sort" : {"followers" : -1}})
+
+    # Limiting the result to one document
+    pipeline.append({"$limit" : 1})
+
+
     return pipeline
 
 def aggregate(db, pipeline):
@@ -51,7 +68,7 @@ if __name__ == '__main__':
     pipeline = make_pipeline()
     result = aggregate(db, pipeline)
     import pprint
-    pprint.pprint(result)
+    pprint.pprint(result[0])
     assert len(result) == 1
     assert result[0]["followers"] == 17209
 
